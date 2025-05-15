@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../components/custom_button.dart';
 import '../components/custom_textfield.dart';
-import 'home_page.dart';
+import '../services/auth/auth_service.dart';
 
 class LoginPage extends StatefulWidget {
   final void Function()? onTap;
@@ -17,13 +17,24 @@ class _LoginPageState extends State<LoginPage> {
 
   final TextEditingController passwordController = TextEditingController();
 
-  void login() {
-    /*
-    // Fill the authentication logic here
+  void login() async {
+    //Get auth service
+    final _authService = AuthService();
 
-     */
-    // Navigate to the home page
-    Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+    //Try to sign in
+    try {
+      await _authService.signInWithEmailPassword(
+        emailController.text,
+        passwordController.text,
+      );
+    }
+    //Display any errors
+    catch (e) {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(title: Text(e.toString())),
+      );
+    }
   }
 
   @override
@@ -72,20 +83,20 @@ class _LoginPageState extends State<LoginPage> {
             const SizedBox(height: 16),
 
             // Sign in button
-            CustomButton(
-              onTap: login,
-              text: 'Sign In',
-            ),
+            CustomButton(onTap: login, text: 'Sign In'),
             const SizedBox(height: 25),
 
             // Not a member (Register link)
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('Not a member?',
-                  style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary),
+                Text(
+                  'Not a member?',
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.inversePrimary,
+                  ),
                 ),
-                const SizedBox(width: 6,),
+                const SizedBox(width: 6),
                 GestureDetector(
                   onTap: widget.onTap,
                   child: Text(
@@ -95,9 +106,9 @@ class _LoginPageState extends State<LoginPage> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                )
+                ),
               ],
-            )
+            ),
           ],
         ),
       ),

@@ -1,0 +1,23 @@
+{
+  "flutter":{
+  "platforms":{
+    "android":{
+      "default":{
+        "projectId":"bitedrop-2435d",
+        "appId":"1:747918394033:android:340ed0aaded57a4b141890",
+        "fileOutput":"android/app/google-services.json"}
+    },"dart":{
+      "lib/firebase_options.dart":{
+        "projectId":"bitedrop-2435d",
+        "configurations":{
+          "android":"1:747918394033:android:340ed0aaded57a4b141890",
+          "ios":"1:747918394033:ios:1c09e70ad7fe54e7141890",
+          "macos":"1:747918394033:ios:1c09e70ad7fe54e7141890",
+          "web":"1:747918394033:web:72b9fe8a66a62d02141890",
+          "windows":"1:747918394033:web:b83a951bd40df80e141890"
+        }
+      }
+    }
+  }
+ }
+}

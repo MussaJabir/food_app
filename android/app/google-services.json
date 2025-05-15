@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "747918394033",
+    "project_id": "bitedrop-2435d",
+    "storage_bucket": "bitedrop-2435d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:747918394033:android:340ed0aaded57a4b141890",
+        "android_client_info": {
+          "package_name": "com.example.food_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAK3rGHmjUynPDGYzGSNVw_1IWHeNq-fwo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -33,13 +33,13 @@ class CartPage extends StatelessWidget {
                             'Are you sure you want to clear the cart?',
                           ),
                           actions: [
-                            //cancel button
+                            //Cancel button
                             TextButton(
                               onPressed: () => Navigator.pop(context),
                               child: Text('Cancel'),
                             ),
 
-                            //yes button
+                            //Yes button
                             TextButton(
                               onPressed: () {
                                 Navigator.pop(context);
@@ -57,7 +57,7 @@ class CartPage extends StatelessWidget {
           ),
           body: Column(
             children: [
-              //list of cart
+              //list of cart items
               Expanded(
                 child: Column(
                   children: [
@@ -77,6 +77,7 @@ class CartPage extends StatelessWidget {
                   ],
                 ),
               ),
+
               //Button to pay
               CustomButton(
                 text: 'Go to checkout',

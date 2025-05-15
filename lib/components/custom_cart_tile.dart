@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_app/components/custom_quantity_selector.dart';
-import 'package:food_app/models/food.dart';
 import 'package:provider/provider.dart';
-
 import '../models/cart_item.dart';
 import '../models/restaurant.dart';
 
@@ -45,28 +43,30 @@ class CustomCartTile extends StatelessWidget {
                         children: [
                           //Name
                           Text(cartItem.food.name),
-                          //Price
-                          Text('\$${cartItem.food.price.toStringAsFixed(2)}',
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.primary
-                          ),),
-                        ],
-                      ),
 
-                      Spacer(),
-                      //Increment or decrement quantity
-                      CustomQuantitySelector(
-                        quantity: cartItem.quantity,
-                        food: cartItem.food,
-                        onIncrement: () {
-                          restaurant.addToCart(
-                            cartItem.food,
-                            cartItem.selectedAddOns,
-                          );
-                        },
-                        onDecrement: () {
-                          restaurant.removeFromCart(cartItem);
-                        },
+                          //Price
+                          Text(
+                            '\$${cartItem.food.price.toStringAsFixed(2)}',
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
+                          ),
+
+                          //Increment or decrement quantity
+                          CustomQuantitySelector(
+                            quantity: cartItem.quantity,
+                            food: cartItem.food,
+                            onIncrement: () {
+                              restaurant.addToCart(
+                                cartItem.food,
+                                cartItem.selectedAddOns,
+                              );
+                            },
+                            onDecrement: () {
+                              restaurant.removeFromCart(cartItem);
+                            },
+                          ),
+                        ],
                       ),
                     ],
                   ),

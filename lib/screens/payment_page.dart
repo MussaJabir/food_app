@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
 import 'package:food_app/components/custom_button.dart';
 
+import 'delivery_progress_page.dart';
+
 class PaymentPage extends StatefulWidget {
   const PaymentPage({super.key});
 
@@ -16,6 +18,49 @@ class _PaymentPageState extends State<PaymentPage> {
   String cardHolderName = '';
   String cvvCode = '';
   bool isCvvFocused = false;
+
+  //User want to make the payment
+  void userTappedPay() {
+    if (formKey.currentState!.validate()) {
+      //Only show dialog if form is valid
+      showDialog(
+        context: context,
+        builder:
+            (context) => AlertDialog(
+              title: Text('Confirm Payment'),
+              content: SingleChildScrollView(
+                child: ListBody(
+                  children: [
+                    Text('Card Number: $cardNumber'),
+                    Text('Expiry Date: $expiryDate'),
+                    Text('Card Holder Name: $cardHolderName'),
+                    Text('Cvv: $cvvCode'),
+                  ],
+                ),
+              ),
+              actions: [
+                //Yes button
+                TextButton(
+                  onPressed:
+                      () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => DeliveryProgressPage(),
+                        ),
+                      ),
+                  child: Text('Yes'),
+                ),
+
+                //Cancel button
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: Text('Cancel'),
+                ),
+              ],
+            ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +88,7 @@ class _PaymentPageState extends State<PaymentPage> {
             expiryDate: expiryDate,
             cardHolderName: cardHolderName,
             cvvCode: cvvCode,
-            onCreditCardModelChange: (data){
+            onCreditCardModelChange: (data) {
               setState(() {
                 cardNumber = data.cardNumber;
                 expiryDate = data.expiryDate;
@@ -54,8 +99,8 @@ class _PaymentPageState extends State<PaymentPage> {
             formKey: formKey,
           ),
           Spacer(),
-          CustomButton(text: 'Pay'),
-          SizedBox(height: 12,)
+          CustomButton(onTap: userTappedPay, text: 'Pay'),
+          SizedBox(height: 12),
         ],
       ),
     );
